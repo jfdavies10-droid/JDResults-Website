@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JDResults – Local SEO That Gets You Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #ede9e3;
+      --black: #111111;
+      --grey: #888888;
+      --red: #e02020;
+      --border: #d4cfc8;
+      --dark: #0f0f1a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 185px;
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 185px;
+      right: 185px;
+      height: 1px;
+      background: var(--black);
+    }
+    .nav-left { display: flex; align-items: center; gap: 40px; }
+    .logo {
+      display: flex; align-items: center; gap: 9px;
+      text-decoration: none; color: var(--black);
+    }
+    .logo-text { font-weight: 700; font-size: 20px; letter-spacing: -0.3px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 500;
+      color: var(--grey); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-btn {
+      background: var(--black); color: #fff; border: none;
+      padding: 11px 24px; border-radius: 999px;
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s; text-decoration: none;
+    }
+    .nav-btn:hover { opacity: 0.8; }
+
+
+    /* ── HERO ── */
+    .hero {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 48px; padding: 40px 60px 20px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .hero-left { flex: 1; max-width: 520px; }
+    .hero-heading {
+      font-family: 'Fraunces', serif; font-weight: 800; font-size: 52px;
+      line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 22px;
+    }
+    .hero-sub { font-size: 17px; color: var(--grey); line-height: 1.6; margin-bottom: 22px; }
+    .hero-cta-text { font-size: 17px; font-weight: 700; line-height: 1.55; margin-bottom: 28px; }
+    .subscribe-row { display: flex; align-items: center; gap: 10px; }
+    .email-input {
+      flex: 1; max-width: 240px; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      background: #fff; font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--grey); outline: none; transition: border-color 0.2s;
+    }
+    .email-input:focus { border-color: var(--black); color: var(--black); }
+    .email-input::placeholder { color: #bbb; }
+    .subscribe-btn {
+      background: var(--black); color: #fff; border: none;
+      padding: 13px 24px; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    .subscribe-btn:hover { opacity: 0.8; }
+
+    /* Video */
+    .hero-right { flex: 1; max-width: 500px; }
+    .video-card {
+      position: relative; border-radius: 18px; overflow: hidden;
+      aspect-ratio: 16/10; cursor: pointer;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.14); background: #1a2a3a;
+    }
+    .video-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #1a3a5c 0%, #2d1a2e 40%, #6b1a1a 100%);
+    }
+    .video-scene {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 110%, rgba(180,60,60,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 30% 80%, rgba(40,80,140,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 70% 90%, rgba(100,30,80,0.3) 0%, transparent 70%);
+    }
+    .mic-svg { position: absolute; bottom: 40px; right: 60px; opacity: 0.45; }
+    .click-label {
+      position: absolute; top: 28px; left: 0; right: 0; text-align: center;
+      font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700;
+      color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    .play-btn {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px; height: 70px; background: var(--red); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(220,30,30,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .video-card:hover .play-btn {
+      transform: translate(-50%, -50%) scale(1.08);
+      box-shadow: 0 6px 32px rgba(220,30,30,0.65);
+    }
+    .play-icon {
+      width: 0; height: 0;
+      border-top: 14px solid transparent; border-bottom: 14px solid transparent;
+      border-left: 22px solid #fff; margin-left: 4px;
+    }
+    .local-badge {
+      position: absolute; bottom: 48px; left: 0; right: 0; text-align: center;
+      font-size: 22px; font-weight: 800; color: rgba(255,255,255,0.18);
+      letter-spacing: 6px; text-transform: uppercase;
+    }
+    .sound-icon {
+      position: absolute; top: 16px; right: 16px;
+      width: 34px; height: 34px; background: rgba(0,0,0,0.55); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .progress-bar-wrap {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 14px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      display: flex; align-items: center; gap: 10px;
+    }
+    .timestamp { font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
+    .progress-track {
+      flex: 1; height: 3px; background: rgba(255,255,255,0.3);
+      border-radius: 99px; position: relative;
+    }
+    .progress-fill { width: 28%; height: 100%; background: var(--red); border-radius: 99px; }
+    .progress-dot {
+      position: absolute; top: 50%; left: 28%;
+      transform: translate(-50%, -50%);
+      width: 9px; height: 9px; background: var(--red); border-radius: 50%;
+    }
+    .brand-logo { margin-left: auto; }
+
+    /* ── WHAT WE DO ── */
+    #what-we-do {
+      background: var(--cream);
+      color: var(--black);
+      padding: 100px 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    #what-we-do::before { display: none; }
+    #what-we-do::after { display: none; }
+    .wwd-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: flex; gap: 80px; align-items: flex-start;
+      position: relative; z-index: 1;
+    }
+    .wwd-left { flex: 1; padding-top: 38px; }
+    .wwd-eyebrow {
+      font-size: 13px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--grey); margin-bottom: 16px;
+    }
+    .wwd-heading {
+      font-family: 'Fraunces', serif; font-weight: 800; font-size: 48px;
+      line-height: 1.05; letter-spacing: -1.5px; margin-bottom: 8px; color: var(--black);
+    }
+    .wwd-heading-accent {
+      font-family: 'Fraunces', serif; font-style: italic; font-size: 52px;
+      font-weight: 700; line-height: 1.05; letter-spacing: -1.5px;
+      display: block; margin-bottom: 32px;
+      background: linear-gradient(90deg, #f97316, #e02020);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .wwd-body {
+      font-size: 16px; line-height: 1.75;
+      color: var(--grey); max-width: 440px; margin-bottom: 18px;
+    }
+    .wwd-body strong { color: var(--black); font-weight: 600; }
+    .wwd-cta {
+      display: inline-block; margin-top: 36px;
+      background: linear-gradient(135deg, #f97316, #e02020);
+      color: #fff; text-decoration: none;
+      padding: 16px 32px; border-radius: 12px;
+      font-size: 16px; font-weight: 700;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 24px rgba(230,80,30,0.35);
+    }
+    .wwd-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .wwd-cta-sub {
+      display: block; font-size: 12px; font-weight: 500;
+      opacity: 0.8; margin-top: 4px; text-align: center;
+    }
+    .wwd-right { flex: 1; }
+    .wwd-focus-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--grey); margin-bottom: 20px;
+    }
+    .wwd-not-list { list-style: none; margin-bottom: 36px; }
+    .wwd-not-list li {
+      display: flex; align-items: center; gap: 14px;
+      padding: 15px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--grey); text-transform: uppercase;
+    }
+    .x-icon {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 2px solid var(--red);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .wwd-yes-box {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 24px 28px;
+    }
+    .wwd-yes-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #f97316; margin-bottom: 10px;
+    }
+    .wwd-yes-text {
+      font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+      color: var(--black); line-height: 1.3;
+    }
+    .wwd-yes-text em {
+      font-style: italic;
+      background: linear-gradient(90deg, #f97316, #e02020);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--cream); padding: 48px 60px 32px; border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 32px; border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+    .footer-logo-text { font-weight: 700; font-size: 18px; color: var(--black); letter-spacing: -0.3px; }
+    .footer-nav { display: flex; gap: 28px; list-style: none; }
+    .footer-nav a {
+      text-decoration: none; font-size: 13px;
+      color: var(--grey); transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--black); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12px; color: var(--grey);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hero { flex-direction: column; padding: 48px 24px; min-height: auto; }
+      .hero-left, .hero-right { max-width: 100%; }
+      .hero-heading { font-size: 38px; }
+      #what-we-do { padding: 70px 24px; min-height: auto; }
+      .wwd-inner { flex-direction: column; gap: 48px; }
+      .wwd-heading { font-size: 36px; }
+      .wwd-heading-accent { font-size: 40px; }
+      footer { padding: 40px 24px 24px; }
+      .footer-top { flex-direction: column; gap: 24px; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a class="logo" href="#home">
+        <svg width="30" height="30" viewBox="0 0 120 120" fill="none">
+          <circle cx="52" cy="52" r="40" stroke="#111" stroke-width="10"/>
+          <line x1="82" y1="82" x2="112" y2="112" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+          <polyline points="32,58 44,44 56,54 70,36" stroke="#111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="logo-text">JDResults</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#what-we-do">What We Do</a></li>
+      </ul>
+    </div>
+    <button class="nav-btn">Sign Up</button>
+  </nav>
+
+
+  <!-- HERO -->
+  <section id="home" style="min-height:calc(100vh - 65px); display:flex; align-items:center; background:var(--cream);">
+  <div class="hero" style="min-height:unset; width:100%;">
+    <div class="hero-left">
+      <h1 class="hero-heading">Is Your Business Invisible on Google?</h1>
+      <p class="hero-sub">Watch this short video to learn why you're not ranking in the top 3.</p>
+      <p class="hero-cta-text">Sign up below to get three FREE tips you can implement today to start climbing ⬇️</p>
+      <div class="subscribe-row">
+        <input class="email-input" type="email" placeholder="name@email.com" />
+        <button class="subscribe-btn">Subscribe</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="video-card">
+        <div class="video-bg"></div>
+        <div class="video-scene"></div>
+        <svg class="mic-svg" width="90" height="160" viewBox="0 0 90 160" fill="none">
+          <rect x="28" y="0" width="34" height="80" rx="17" fill="white"/>
+          <path d="M10 70 Q10 110 45 110 Q80 110 80 70" stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="45" y1="110" x2="45" y2="140" stroke="white" stroke-width="6" stroke-linecap="round"/>
+          <line x1="25" y1="140" x2="65" y2="140" stroke="white" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <div class="click-label">Click To Watch</div>
+        <div class="sound-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </div>
+        <div class="local-badge">Local</div>
+        <div class="play-btn"><div class="play-icon"></div></div>
+        <div class="progress-bar-wrap">
+          <span class="timestamp">2:44 ◀</span>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+            <div class="progress-dot"></div>
+          </div>
+          <svg class="brand-logo" width="20" height="20" viewBox="0 0 120 120" fill="none">
+            <circle cx="52" cy="52" r="40" stroke="white" stroke-width="10"/>
+            <line x1="82" y1="82" x2="112" y2="112" stroke="white" stroke-width="10" stroke-linecap="round"/>
+            <polyline points="32,58 44,44 56,54 70,36" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <section id="what-we-do" style="min-height:100vh; display:flex; align-items:center;">
+    <div class="wwd-inner">
+      <div class="wwd-left">
+        <h2 class="wwd-heading">We do one thing.</h2>
+        <span class="wwd-heading-accent">Local SEO.</span>
+        <p class="wwd-body">We don't spread ourselves thin across a dozen services. <strong>We do one thing — and we do it better than anyone.</strong></p>
+        <p class="wwd-body">We get local businesses to the <strong>top 3 results on Google</strong> for their niche in their area. When someone in your town searches for what you offer, <strong>they find you first</strong> — not your competition.</p>
+        <p class="wwd-body">If you want an agency that does a bit of everything and moves the needle on nothing, we're not for you. If you want to be <strong>unmissable in your local market</strong> — let's talk.</p>
+        <a class="wwd-cta" href="#">
+          Book a Free Discovery Call
+          <span class="wwd-cta-sub">No commitment · 30 minutes</span>
+        </a>
+      </div>
+      <div class="wwd-right">
+        <p class="wwd-focus-label">We don't offer</p>
+        <ul class="wwd-not-list">
+          <li><span class="x-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="2" y1="2" x2="8" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="2" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/></svg></span>Web Design</li>
+          <li><span class="x-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="2" y1="2" x2="8" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="2" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/></svg></span>Paid Advertising</li>
+          <li><span class="x-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="2" y1="2" x2="8" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="2" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/></svg></span>Social Media Management</li>
+          <li><span class="x-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="2" y1="2" x2="8" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="2" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/></svg></span>Email Marketing</li>
+          <li><span class="x-icon"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="2" y1="2" x2="8" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="2" x2="2" y2="8" stroke="#e02020" stroke-width="2" stroke-linecap="round"/></svg></span>Content Creation</li>
+        </ul>
+        <div class="wwd-yes-box">
+          <p class="wwd-yes-label">✓ What we do</p>
+          <p class="wwd-yes-text">Get your business to the <em>top 3 on Google</em> — in your area, for your niche.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE TIPS CTA -->
+  <section id="free-tips" style="min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--cream); padding: 60px 24px;">
+    <div style="background:#f5f2ee; border-radius:24px; max-width:780px; width:100%; padding:60px 80px; text-align:center;">
+      <div style="width:48px;height:48px;background:var(--black);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+      </div>
+      <span style="display:inline-block;border:1.5px solid var(--border);border-radius:999px;padding:5px 16px;font-size:12px;font-weight:600;color:var(--black);margin-bottom:24px;background:var(--cream);">Free stuff</span>
+      <h2 style="font-family:'Fraunces',serif;font-weight:800;font-size:44px;line-height:1.1;letter-spacing:-1.5px;color:var(--black);margin-bottom:22px;">3 Tips to <em style="font-style:italic;">Rank<br>Higher</em> on Google</h2>
+      <p style="font-size:15px;color:var(--grey);line-height:1.65;max-width:420px;margin:0 auto 12px;">Get a free video showing you the first three things we do when we start working with a local business to get them ranking in the top 3.</p>
+      <p style="font-size:14px;color:var(--grey);margin-bottom:6px;">No technical know-how needed.</p>
+      <p style="font-size:14px;color:var(--grey);margin-bottom:32px;">Enter your email and you'll get instant access.</p>
+      <button class="subscribe-btn" onclick="showFormPage()" style="padding:15px 36px;border-radius:999px;font-size:15px;">Get 3 FREE Tips</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <a class="footer-logo" href="#home">
+          <svg width="26" height="26" viewBox="0 0 120 120" fill="none">
+            <circle cx="52" cy="52" r="40" stroke="#111" stroke-width="10"/>
+            <line x1="82" y1="82" x2="112" y2="112" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+            <polyline points="32,58 44,44 56,54 70,36" stroke="#111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="footer-logo-text">JDResults</span>
+        </a>
+        <ul class="footer-nav">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#free-tips">Free Tips</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 JDResults. All rights reserved.</span>
+        <span>Local SEO specialists — getting you to the top 3.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FORM PAGE OVERLAY -->
+  <div id="form-page" style="display:none; position:fixed; inset:0; background:var(--cream); z-index:200; overflow-y:auto;">
+
+    <!-- Form page nav -->
+    <nav style="display:flex; align-items:center; justify-content:space-between; padding:20px 185px; position:relative; background:var(--cream);">
+      <a class="logo" href="#" onclick="hideFormPage(); return false;">
+        <svg width="30" height="30" viewBox="0 0 120 120" fill="none">
+          <circle cx="52" cy="52" r="40" stroke="#111" stroke-width="10"/>
+          <line x1="82" y1="82" x2="112" y2="112" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+          <polyline points="32,58 44,44 56,54 70,36" stroke="#111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="logo-text">JDResults</span>
+      </a>
+      <button onclick="hideFormPage()" style="background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--grey);display:flex;align-items:center;gap:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back
+      </button>
+      <div style="position:absolute;bottom:0;left:185px;right:185px;height:1px;background:var(--black);"></div>
+    </nav>
+
+    <!-- Form content -->
+    <div style="max-width:1100px; margin:0 auto; width:100%; display:flex; gap:80px; align-items:center; padding:80px 60px; min-height:calc(100vh - 80px);">
+
+      <!-- Left copy -->
+      <div style="flex:1;">
+        <p style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:16px;">Get instant access</p>
+        <h2 style="font-family:'Fraunces',serif;font-weight:800;font-size:46px;line-height:1.1;letter-spacing:-1.5px;color:var(--black);margin-bottom:24px;">Your free tips are one step away.</h2>
+        <p style="font-size:16px;color:var(--grey);line-height:1.75;margin-bottom:16px;">Fill in your details and we'll send you a free video covering the first three things we do when working with a local business to get them into the Google top 3.</p>
+        <p style="font-size:16px;color:var(--grey);line-height:1.75;margin-bottom:16px;">No spam. No sales calls. Just the tips — straight to your inbox.</p>
+        <p style="font-size:15px;font-weight:700;color:var(--black);line-height:1.6;">We work with local businesses across the UK and help them become the most visible option in their area on Google.</p>
+      </div>
+
+      <!-- Right form -->
+      <div style="flex:1;">
+        <div style="display:flex;flex-direction:column;gap:20px;">
+
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Full Name</label>
+            <input type="text" placeholder="Jane Smith" style="width:100%;padding:14px 0;border:none;border-bottom:1.5px solid var(--black);background:transparent;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--black);outline:none;" />
+          </div>
+
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Email Address</label>
+            <input type="email" placeholder="jane@yourbusiness.com" style="width:100%;padding:14px 0;border:none;border-bottom:1.5px solid var(--black);background:transparent;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--black);outline:none;" />
+          </div>
+
+          <div style="display:flex;gap:20px;">
+            <div style="flex:1;">
+              <label style="display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Phone Number</label>
+              <div style="display:flex;border-bottom:1.5px solid var(--black);">
+                <select style="padding:14px 6px 14px 0;background:transparent;border:none;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--black);outline:none;cursor:pointer;flex-shrink:0;">
+                  <option>🇬🇧 +44</option>
+                  <option>🇺🇸 +1</option>
+                  <option>🇮🇪 +353</option>
+                  <option>🇦🇺 +61</option>
+                  <option>🇩🇪 +49</option>
+                  <option>🇫🇷 +33</option>
+                  <option>🇪🇸 +34</option>
+                  <option>🇮🇹 +39</option>
+                  <option>🇳🇱 +31</option>
+                  <option>🇨🇦 +1</option>
+                </select>
+                <input type="tel" placeholder="7911 123456" style="flex:1;padding:14px 0 14px 8px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--black);outline:none;" />
+              </div>
+            </div>
+            <div style="flex:1;">
+              <label style="display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Company Name</label>
+              <input type="text" placeholder="Your Business Ltd" style="width:100%;padding:14px 0;border:none;border-bottom:1.5px solid var(--black);background:transparent;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--black);outline:none;" />
+            </div>
+          </div>
+
+          <div>
+            <label style="display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;">Google Maps Place URL</label>
+            <input type="url" placeholder="https://maps.google.com/..." style="width:100%;padding:14px 0;border:none;border-bottom:1.5px solid var(--black);background:transparent;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--black);outline:none;" />
+            <p style="font-size:11px;color:var(--grey);margin-top:6px;">Search your business on Google Maps and copy the URL from your browser.</p>
+          </div>
+
+          <button class="subscribe-btn" style="margin-top:12px;padding:16px;width:100%;border-radius:12px;font-size:16px;">Submit</button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer on form page -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <a class="footer-logo" href="#" onclick="hideFormPage(); return false;">
+            <svg width="26" height="26" viewBox="0 0 120 120" fill="none">
+              <circle cx="52" cy="52" r="40" stroke="#111" stroke-width="10"/>
+              <line x1="82" y1="82" x2="112" y2="112" stroke="#111" stroke-width="10" stroke-linecap="round"/>
+              <polyline points="32,58 44,44 56,54 70,36" stroke="#111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="footer-logo-text">JDResults</span>
+          </a>
+          <ul class="footer-nav">
+            <li><a href="#" onclick="hideFormPage(); return false;">Home</a></li>
+            <li><a href="#" onclick="hideFormPage(); document.getElementById('what-we-do').scrollIntoView({behavior:'smooth'}); return false;">What We Do</a></li>
+            <li><a href="#" onclick="hideFormPage(); document.getElementById('free-tips').scrollIntoView({behavior:'smooth'}); return false;">Free Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 JDResults. All rights reserved.</span>
+          <span>Local SEO specialists — getting you to the top 3.</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function showFormPage() {
+      document.getElementById('form-page').style.display = 'block';
+      window.scrollTo(0, 0);
+      document.body.style.overflow = 'hidden';
+    }
+    function hideFormPage() {
+      document.getElementById('form-page').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  </script>
+
+</body>
+</html>
